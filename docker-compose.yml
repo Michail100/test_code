@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+
+  db1:
+    container_name: postgres
+    image: postgres
+    restart: always
+    network_mode: "host"
+    ports:
+      - 5432:5432
+    env_file:
+      - ".env"
+
+  adminer:
+    container_name: adminer
+    image: adminer
+
+    restart: always
+    network_mode: "host"
+    ports:
+      - 8080:8080
+  telegram_bot1:
+    container_name: Bot1
+    build:
+      context: .
+    command: python __main__.py
+    restart: always
+    network_mode: "host"
+    env_file:
+      - ".env"
+
